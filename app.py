@@ -23,7 +23,6 @@ class Hello(Resource):
   
     # Corresponds to POST request
     def post(self):
-          
         data = request.get_json()     # status code
         return jsonify({'data': data}), 201
   
@@ -32,10 +31,14 @@ class Hello(Resource):
 class Square(Resource):
   
     def get(self, num):
-  
         return jsonify({'square': num**2})
   
-  
+    def post(self):
+        num1 = request.json['num1']
+        num2 = request.json['num2']
+        return jsonify({'multiply': num1*num2})
+
+
 # adding the defined resources along with their corresponding urls
 api.add_resource(Hello, '/')
 api.add_resource(Square, '/square/<int:num>')
