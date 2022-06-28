@@ -36,7 +36,7 @@ class Square(Resource):
     def post(self):
         num1 = request.json['num1']
         num2 = request.json['num2']
-        return jsonify({'multiply': num1*num2})
+        return jsonify({'multiply=': num1*num2})
 
 
 # adding the defined resources along with their corresponding urls
