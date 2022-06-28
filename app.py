@@ -32,16 +32,19 @@ class Square(Resource):
   
     def get(self, num):
         return jsonify({'square': num**2})
-  
+
+class Multiply(Resource):  
     def post(self):
-        num1 = request.json['num1']
-        num2 = request.json['num2']
+        json_data = request.get_json(force=True)
+        num1 = json_data['num1']
+        num2 = json_data['num2']
         return jsonify({'multiply=': num1*num2})
 
 
 # adding the defined resources along with their corresponding urls
 api.add_resource(Hello, '/')
 api.add_resource(Square, '/square/<int:num>')
+api.add_resource(Multiply, '/multiply')
 
 if __name__ == '__main__':
     port = os.environ.get('FLASK_PORT') or 8080
